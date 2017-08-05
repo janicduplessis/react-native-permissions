@@ -19,16 +19,16 @@
 #endif
 
 
-#if __has_include("RCTConvert.h")
-  #import "RCTConvert.h"
-#else
+#if __has_include(<React/RCTConvert.h>)
   #import <React/RCTConvert.h>
+#else
+  #import "RCTConvert.h"
 #endif
 
-#if __has_include("RCTEventDispatcher.h")
-  #import "RCTEventDispatcher.h"
-#else
+#if __has_include(<React/RCTEventDispatcher.h>)
   #import <React/RCTEventDispatcher.h>
+#else
+  #import "RCTEventDispatcher.h"
 #endif
 
 #import "RNPLocation.h"
@@ -146,8 +146,6 @@ RCT_REMAP_METHOD(getPermissionStatus, getPermissionStatus:(RNPType)type json:(id
 
 RCT_REMAP_METHOD(requestPermission, permissionType:(RNPType)type json:(id)json resolve:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-    NSString *status;
-    
     switch (type) {
         case RNPTypeLocation:
             return [self requestLocation:json resolve:resolve];
